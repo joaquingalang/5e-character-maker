@@ -4,7 +4,17 @@
       "WebSearch",
       "Bash(npm --version)",
       "Bash(npx create-next-app@latest 5e-character-maker --typescript --tailwind --app --no-src-dir --import-alias \"@/*\" --no-git --yes)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(taskkill *)",
+      "PowerShell(Stop-Process *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\L-JOAQUIN\\\\Documents\\\\Projects\\\\Web\\\\5e-character-maker\\\\components\\\\wizard\" -Recurse)",
+      "Bash(Select-Object FullName)",
+      "Bash(grep -E \"\\\\.\\(ts|tsx|js\\)$\")",
+      "Bash(Get-ChildItem *)",
+      "Bash(grep -E \"\\\\.\\(ts|js|tsx|jsx\\)$\")",
+      "Bash(grep -E \"\\\\.\\(ts|js\\)$\")"
     ]
   }
 }
