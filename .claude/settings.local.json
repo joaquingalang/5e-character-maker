@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(npm --version)",
+      "Bash(npx create-next-app@latest 5e-character-maker --typescript --tailwind --app --no-src-dir --import-alias \"@/*\" --no-git --yes)",
+      "Bash(npm install *)"
+    ]
+  }
+}
