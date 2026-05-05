@@ -14,7 +14,18 @@
       "Bash(grep -E \"\\\\.\\(ts|tsx|js\\)$\")",
       "Bash(Get-ChildItem *)",
       "Bash(grep -E \"\\\\.\\(ts|js|tsx|jsx\\)$\")",
-      "Bash(grep -E \"\\\\.\\(ts|js\\)$\")"
+      "Bash(grep -E \"\\\\.\\(ts|js\\)$\")",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "WebFetch(domain:dnd5e.wikidot.com)",
+      "Bash(Select-Object -First 20)",
+      "Bash(dir /s /b \"C:\\\\Users\\\\L-JOAQUIN\\\\Documents\\\\Projects\\\\Web\\\\5e-character-maker\")",
+      "Bash(xargs grep *)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\L-JOAQUIN\\\\Documents\\\\Projects\\\\Web\\\\5e-character-maker\\\\app\" -Recurse -Directory | Where-Object {$_.Name -eq \"characters\"})",
+      "Bash(node scripts/fetch-class-equipment.mjs)",
+      "Bash(node *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
