@@ -367,7 +367,7 @@ function DiceRollTab({
 const PRIORITY_LABELS = ['Primary', 'Secondary', 'Tertiary', 'Quaternary', 'Quinary', 'Dump Stat']
 
 function buildRecommendedScores(className: string | null | undefined): AbilityScores {
-  const priority = (className && CLASS_ABILITY_PRIORITIES[className]) ?? DEFAULT_PRIORITY
+  const priority = (className ? CLASS_ABILITY_PRIORITIES[className] : undefined) ?? DEFAULT_PRIORITY
   const scores: AbilityScores = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 }
   STANDARD_ARRAY.forEach((val, i) => { scores[priority[i] as AbilityKey] = val })
   return scores
@@ -381,7 +381,7 @@ function RecommendedTab({
   scores: AbilityScores
   className: string | null | undefined
 }) {
-  const priority = (className && CLASS_ABILITY_PRIORITIES[className]) ?? DEFAULT_PRIORITY
+  const priority = (className ? CLASS_ABILITY_PRIORITIES[className] : undefined) ?? DEFAULT_PRIORITY
   const displayName = className
     ? className.charAt(0).toUpperCase() + className.slice(1)
     : 'your class'
