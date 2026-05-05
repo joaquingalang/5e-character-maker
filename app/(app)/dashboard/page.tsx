@@ -3,6 +3,7 @@ import { createCharacter } from '@/app/actions/character'
 import Link from 'next/link'
 import type { Character } from '@/lib/types'
 import { redirect } from 'next/navigation'
+import { DeleteCharacterButton } from '@/components/DeleteCharacterButton'
 
 const STEP_LABELS = ['Race & Class', 'Your Story', 'Skills', 'Ability Scores', 'Equipment', 'Final Details']
 
@@ -79,6 +80,7 @@ function CharacterCard({ character }: { character: Character }) {
             Continue →
           </Link>
         )}
+        <DeleteCharacterButton id={character.id} name={displayName} />
       </div>
     </div>
   )

@@ -2,6 +2,7 @@
 
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
+import { revalidatePath } from 'next/cache'
 import type { AbilityScores, EquipmentItem } from '@/lib/types'
 
 export async function createCharacter(): Promise<string> {
@@ -113,4 +114,18 @@ export async function saveStep6(
 
   if (error) throw new Error(`Failed to save step 6: ${error.message}`)
   redirect(`/characters/${characterId}`)
+}
+
+export async function deleteCharacter(characterId: string) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect('/login')
+
+  const { error } = await supabase
+    .from('characters')
+    .delete()
+    .eq('id', characterId)
+
+  if (error) throw new Error(`Failed to delete character: ${error.message}`)
+  revalidatePath('/dashboard')
 }
