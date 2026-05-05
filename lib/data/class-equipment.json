@@ -1,0 +1,1198 @@
+{
+  "artificer": {
+    "guaranteed": [],
+    "choices": []
+  },
+  "barbarian": {
+    "guaranteed": [
+      {
+        "index": "explorers-pack",
+        "name": "Explorer's Pack",
+        "quantity": 1
+      },
+      {
+        "index": "javelin",
+        "name": "Javelin",
+        "quantity": 4
+      }
+    ],
+    "choices": [
+      {
+        "desc": "(a) a greataxe or (b) any martial melee weapon",
+        "options": [
+          {
+            "label": "Greataxe",
+            "items": [
+              {
+                "index": "greataxe",
+                "name": "Greataxe",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "any martial melee weapon",
+            "items": [
+              {
+                "index": "choice-any-martial-melee-weapon",
+                "name": "any martial melee weapon",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "martial-melee-weapons"
+          }
+        ]
+      },
+      {
+        "desc": "(a) two handaxes or (b) any simple weapon",
+        "options": [
+          {
+            "label": "2× Handaxe",
+            "items": [
+              {
+                "index": "handaxe",
+                "name": "Handaxe",
+                "quantity": 2
+              }
+            ]
+          },
+          {
+            "label": "any simple weapon",
+            "items": [
+              {
+                "index": "choice-any-simple-weapon",
+                "name": "any simple weapon",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "simple-weapons"
+          }
+        ]
+      }
+    ]
+  },
+  "bard": {
+    "guaranteed": [
+      {
+        "index": "leather-armor",
+        "name": "Leather Armor",
+        "quantity": 1
+      },
+      {
+        "index": "dagger",
+        "name": "Dagger",
+        "quantity": 1
+      }
+    ],
+    "choices": [
+      {
+        "desc": "(a) a rapier, (b) a longsword, or (c) any simple weapon",
+        "options": [
+          {
+            "label": "Rapier",
+            "items": [
+              {
+                "index": "rapier",
+                "name": "Rapier",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Longsword",
+            "items": [
+              {
+                "index": "longsword",
+                "name": "Longsword",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "any simple weapon",
+            "items": [
+              {
+                "index": "choice-any-simple-weapon",
+                "name": "any simple weapon",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "simple-weapons"
+          }
+        ]
+      },
+      {
+        "desc": "(a) a diplomat’s pack or (b) an entertainer’s pack",
+        "options": [
+          {
+            "label": "Diplomat's Pack",
+            "items": [
+              {
+                "index": "diplomats-pack",
+                "name": "Diplomat's Pack",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Entertainer's Pack",
+            "items": [
+              {
+                "index": "entertainers-pack",
+                "name": "Entertainer's Pack",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "desc": "(a) a lute or (b) any other musical instrument",
+        "options": [
+          {
+            "label": "Lute",
+            "items": [
+              {
+                "index": "lute",
+                "name": "Lute",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "any other musical instrument",
+            "items": [
+              {
+                "index": "choice-any-other-musical-instrument",
+                "name": "any other musical instrument",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "musical-instruments"
+          }
+        ]
+      }
+    ]
+  },
+  "cleric": {
+    "guaranteed": [
+      {
+        "index": "shield",
+        "name": "Shield",
+        "quantity": 1
+      }
+    ],
+    "choices": [
+      {
+        "desc": "(a) a mace or (b) a warhammer (if proficient)",
+        "options": [
+          {
+            "label": "Mace",
+            "items": [
+              {
+                "index": "mace",
+                "name": "Mace",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Warhammer",
+            "items": [
+              {
+                "index": "warhammer",
+                "name": "Warhammer",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "desc": "(a) scale mail, (b) leather armor, or (c) chain mail (if proficient)",
+        "options": [
+          {
+            "label": "Scale Mail",
+            "items": [
+              {
+                "index": "scale-mail",
+                "name": "Scale Mail",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Leather Armor",
+            "items": [
+              {
+                "index": "leather-armor",
+                "name": "Leather Armor",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Chain Mail",
+            "items": [
+              {
+                "index": "chain-mail",
+                "name": "Chain Mail",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "desc": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
+        "options": [
+          {
+            "label": "Crossbow, light + 20× Crossbow bolt",
+            "items": [
+              {
+                "index": "crossbow-light",
+                "name": "Crossbow, light",
+                "quantity": 1
+              },
+              {
+                "index": "crossbow-bolt",
+                "name": "Crossbow bolt",
+                "quantity": 20
+              }
+            ]
+          },
+          {
+            "label": "any simple weapon",
+            "items": [
+              {
+                "index": "choice-any-simple-weapon",
+                "name": "any simple weapon",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "simple-weapons"
+          }
+        ]
+      },
+      {
+        "desc": "(a) a priest’s pack or (b) an explorer’s pack",
+        "options": [
+          {
+            "label": "Priest's Pack",
+            "items": [
+              {
+                "index": "priests-pack",
+                "name": "Priest's Pack",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Explorer's Pack",
+            "items": [
+              {
+                "index": "explorers-pack",
+                "name": "Explorer's Pack",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "desc": "holy symbol",
+        "options": [
+          {
+            "label": "Any Holy Symbols",
+            "items": [
+              {
+                "index": "choice-holy-symbols",
+                "name": "Any Holy Symbols",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "holy-symbols"
+          }
+        ]
+      }
+    ]
+  },
+  "druid": {
+    "guaranteed": [
+      {
+        "index": "leather-armor",
+        "name": "Leather Armor",
+        "quantity": 1
+      },
+      {
+        "index": "explorers-pack",
+        "name": "Explorer's Pack",
+        "quantity": 1
+      }
+    ],
+    "choices": [
+      {
+        "desc": "(a) a wooden shield or (b) any simple weapon",
+        "options": [
+          {
+            "label": "Shield",
+            "items": [
+              {
+                "index": "shield",
+                "name": "Shield",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "any simple weapon",
+            "items": [
+              {
+                "index": "choice-any-simple-weapon",
+                "name": "any simple weapon",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "simple-weapons"
+          }
+        ]
+      },
+      {
+        "desc": "(a) a scimitar or (b) any simple melee weapon",
+        "options": [
+          {
+            "label": "Scimitar",
+            "items": [
+              {
+                "index": "scimitar",
+                "name": "Scimitar",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "any simple melee weapon",
+            "items": [
+              {
+                "index": "choice-any-simple-melee-weapon",
+                "name": "any simple melee weapon",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "simple-melee-weapons"
+          }
+        ]
+      },
+      {
+        "desc": "druidic focus",
+        "options": [
+          {
+            "label": "Any Druidic Foci",
+            "items": [
+              {
+                "index": "choice-druidic-foci",
+                "name": "Any Druidic Foci",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "druidic-foci"
+          }
+        ]
+      }
+    ]
+  },
+  "fighter": {
+    "guaranteed": [],
+    "choices": [
+      {
+        "desc": "(a) chain mail or (b) leather armor, longbow, and 20 arrows",
+        "options": [
+          {
+            "label": "Chain Mail",
+            "items": [
+              {
+                "index": "chain-mail",
+                "name": "Chain Mail",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Leather Armor + Longbow + 20× Arrow",
+            "items": [
+              {
+                "index": "leather-armor",
+                "name": "Leather Armor",
+                "quantity": 1
+              },
+              {
+                "index": "longbow",
+                "name": "Longbow",
+                "quantity": 1
+              },
+              {
+                "index": "arrow",
+                "name": "Arrow",
+                "quantity": 20
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "desc": "(a) a martial weapon and a shield or (b) two martial weapons",
+        "options": [
+          {
+            "label": "a martial weapon + Shield",
+            "items": [
+              {
+                "index": "choice-a-martial-weapon",
+                "name": "a martial weapon",
+                "quantity": 1
+              },
+              {
+                "index": "shield",
+                "name": "Shield",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "two martial weapons",
+            "items": [
+              {
+                "index": "choice-two-martial-weapons",
+                "name": "two martial weapons",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "martial-weapons"
+          }
+        ]
+      },
+      {
+        "desc": "(a) a light crossbow and 20 bolts or (b) two handaxes",
+        "options": [
+          {
+            "label": "Crossbow, light + 20× Crossbow bolt",
+            "items": [
+              {
+                "index": "crossbow-light",
+                "name": "Crossbow, light",
+                "quantity": 1
+              },
+              {
+                "index": "crossbow-bolt",
+                "name": "Crossbow bolt",
+                "quantity": 20
+              }
+            ]
+          },
+          {
+            "label": "2× Handaxe",
+            "items": [
+              {
+                "index": "handaxe",
+                "name": "Handaxe",
+                "quantity": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "desc": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
+        "options": [
+          {
+            "label": "Dungeoneer's Pack",
+            "items": [
+              {
+                "index": "dungeoneers-pack",
+                "name": "Dungeoneer's Pack",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Explorer's Pack",
+            "items": [
+              {
+                "index": "explorers-pack",
+                "name": "Explorer's Pack",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "monk": {
+    "guaranteed": [
+      {
+        "index": "dart",
+        "name": "Dart",
+        "quantity": 10
+      }
+    ],
+    "choices": [
+      {
+        "desc": "(a) a shortsword or (b) any simple weapon",
+        "options": [
+          {
+            "label": "Shortsword",
+            "items": [
+              {
+                "index": "shortsword",
+                "name": "Shortsword",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "any simple weapon",
+            "items": [
+              {
+                "index": "choice-any-simple-weapon",
+                "name": "any simple weapon",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "simple-weapons"
+          }
+        ]
+      },
+      {
+        "desc": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
+        "options": [
+          {
+            "label": "Dungeoneer's Pack",
+            "items": [
+              {
+                "index": "dungeoneers-pack",
+                "name": "Dungeoneer's Pack",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Explorer's Pack",
+            "items": [
+              {
+                "index": "explorers-pack",
+                "name": "Explorer's Pack",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "paladin": {
+    "guaranteed": [
+      {
+        "index": "chain-mail",
+        "name": "Chain Mail",
+        "quantity": 1
+      }
+    ],
+    "choices": [
+      {
+        "desc": "(a) a martial weapon and a shield or (b) two martial weapons",
+        "options": [
+          {
+            "label": "a martial weapon + Shield",
+            "items": [
+              {
+                "index": "choice-a-martial-weapon",
+                "name": "a martial weapon",
+                "quantity": 1
+              },
+              {
+                "index": "shield",
+                "name": "Shield",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "two martial weapons",
+            "items": [
+              {
+                "index": "choice-two-martial-weapons",
+                "name": "two martial weapons",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "martial-weapons"
+          }
+        ]
+      },
+      {
+        "desc": "(a) five javelins or (b) any simple melee weapon",
+        "options": [
+          {
+            "label": "5× Javelin",
+            "items": [
+              {
+                "index": "javelin",
+                "name": "Javelin",
+                "quantity": 5
+              }
+            ]
+          },
+          {
+            "label": "any simple weapon",
+            "items": [
+              {
+                "index": "choice-any-simple-weapon",
+                "name": "any simple weapon",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "simple-weapons"
+          }
+        ]
+      },
+      {
+        "desc": "(a) a priest’s pack or (b) an explorer’s pack",
+        "options": [
+          {
+            "label": "Priest's Pack",
+            "items": [
+              {
+                "index": "priests-pack",
+                "name": "Priest's Pack",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Explorer's Pack",
+            "items": [
+              {
+                "index": "explorers-pack",
+                "name": "Explorer's Pack",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "desc": "holy symbol",
+        "options": [
+          {
+            "label": "Any Holy Symbols",
+            "items": [
+              {
+                "index": "choice-holy-symbols",
+                "name": "Any Holy Symbols",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "holy-symbols"
+          }
+        ]
+      }
+    ]
+  },
+  "ranger": {
+    "guaranteed": [
+      {
+        "index": "longbow",
+        "name": "Longbow",
+        "quantity": 1
+      },
+      {
+        "index": "arrow",
+        "name": "Arrow",
+        "quantity": 20
+      }
+    ],
+    "choices": [
+      {
+        "desc": "(a) scale mail or (b) leather armor",
+        "options": [
+          {
+            "label": "Scale Mail",
+            "items": [
+              {
+                "index": "scale-mail",
+                "name": "Scale Mail",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Leather Armor",
+            "items": [
+              {
+                "index": "leather-armor",
+                "name": "Leather Armor",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "desc": "(a) two shortswords or (b) two simple melee weapons",
+        "options": [
+          {
+            "label": "2× Shortsword",
+            "items": [
+              {
+                "index": "shortsword",
+                "name": "Shortsword",
+                "quantity": 2
+              }
+            ]
+          },
+          {
+            "label": "two simple melee weapons",
+            "items": [
+              {
+                "index": "choice-two-simple-melee-weapons",
+                "name": "two simple melee weapons",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "simple-melee-weapons"
+          }
+        ]
+      },
+      {
+        "desc": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
+        "options": [
+          {
+            "label": "Dungeoneer's Pack",
+            "items": [
+              {
+                "index": "dungeoneers-pack",
+                "name": "Dungeoneer's Pack",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Explorer's Pack",
+            "items": [
+              {
+                "index": "explorers-pack",
+                "name": "Explorer's Pack",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "rogue": {
+    "guaranteed": [
+      {
+        "index": "leather-armor",
+        "name": "Leather Armor",
+        "quantity": 1
+      },
+      {
+        "index": "dagger",
+        "name": "Dagger",
+        "quantity": 2
+      },
+      {
+        "index": "thieves-tools",
+        "name": "Thieves' Tools",
+        "quantity": 1
+      }
+    ],
+    "choices": [
+      {
+        "desc": "(a) a rapier or (b) a shortsword",
+        "options": [
+          {
+            "label": "Rapier",
+            "items": [
+              {
+                "index": "rapier",
+                "name": "Rapier",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Shortsword",
+            "items": [
+              {
+                "index": "shortsword",
+                "name": "Shortsword",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "desc": "(a) a shortbow and quiver of 20 arrows or (b) a shortsword",
+        "options": [
+          {
+            "label": "Shortbow + 20× Arrow",
+            "items": [
+              {
+                "index": "shortbow",
+                "name": "Shortbow",
+                "quantity": 1
+              },
+              {
+                "index": "arrow",
+                "name": "Arrow",
+                "quantity": 20
+              }
+            ]
+          },
+          {
+            "label": "Shortsword",
+            "items": [
+              {
+                "index": "shortsword",
+                "name": "Shortsword",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "desc": "(a) a burglar’s pack, (b) a dungeoneer’s pack, or (c) an explorer’s pack",
+        "options": [
+          {
+            "label": "Burglar's Pack",
+            "items": [
+              {
+                "index": "burglars-pack",
+                "name": "Burglar's Pack",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Dungeoneer's Pack",
+            "items": [
+              {
+                "index": "dungeoneers-pack",
+                "name": "Dungeoneer's Pack",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Explorer's Pack",
+            "items": [
+              {
+                "index": "explorers-pack",
+                "name": "Explorer's Pack",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sorcerer": {
+    "guaranteed": [
+      {
+        "index": "dagger",
+        "name": "Dagger",
+        "quantity": 2
+      }
+    ],
+    "choices": [
+      {
+        "desc": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
+        "options": [
+          {
+            "label": "Crossbow, light + 20× Crossbow bolt",
+            "items": [
+              {
+                "index": "crossbow-light",
+                "name": "Crossbow, light",
+                "quantity": 1
+              },
+              {
+                "index": "crossbow-bolt",
+                "name": "Crossbow bolt",
+                "quantity": 20
+              }
+            ]
+          },
+          {
+            "label": "any simple weapon",
+            "items": [
+              {
+                "index": "choice-any-simple-weapon",
+                "name": "any simple weapon",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "simple-weapons"
+          }
+        ]
+      },
+      {
+        "desc": "(a) a component pouch or (b) an arcane focus",
+        "options": [
+          {
+            "label": "Component pouch",
+            "items": [
+              {
+                "index": "component-pouch",
+                "name": "Component pouch",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "arcane focus",
+            "items": [
+              {
+                "index": "choice-arcane-focus",
+                "name": "arcane focus",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "arcane-foci"
+          }
+        ]
+      },
+      {
+        "desc": "(a) a dungeoneer’s pack or (b) an explorer’s pack",
+        "options": [
+          {
+            "label": "Dungeoneer's Pack",
+            "items": [
+              {
+                "index": "dungeoneers-pack",
+                "name": "Dungeoneer's Pack",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Explorer's Pack",
+            "items": [
+              {
+                "index": "explorers-pack",
+                "name": "Explorer's Pack",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "warlock": {
+    "guaranteed": [
+      {
+        "index": "dagger",
+        "name": "Dagger",
+        "quantity": 2
+      },
+      {
+        "index": "leather-armor",
+        "name": "Leather Armor",
+        "quantity": 1
+      }
+    ],
+    "choices": [
+      {
+        "desc": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
+        "options": [
+          {
+            "label": "Crossbow, light + 20× Crossbow bolt",
+            "items": [
+              {
+                "index": "crossbow-light",
+                "name": "Crossbow, light",
+                "quantity": 1
+              },
+              {
+                "index": "crossbow-bolt",
+                "name": "Crossbow bolt",
+                "quantity": 20
+              }
+            ]
+          },
+          {
+            "label": "any simple weapon",
+            "items": [
+              {
+                "index": "choice-any-simple-weapon",
+                "name": "any simple weapon",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "simple-weapons"
+          }
+        ]
+      },
+      {
+        "desc": "(a) a component pouch or (b) an arcane focus",
+        "options": [
+          {
+            "label": "Component pouch",
+            "items": [
+              {
+                "index": "component-pouch",
+                "name": "Component pouch",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "arcane focus",
+            "items": [
+              {
+                "index": "choice-arcane-focus",
+                "name": "arcane focus",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "arcane-foci"
+          }
+        ]
+      },
+      {
+        "desc": "(a) a scholar’s pack or (b) a dungeoneer’s pack",
+        "options": [
+          {
+            "label": "Scholar's Pack",
+            "items": [
+              {
+                "index": "scholars-pack",
+                "name": "Scholar's Pack",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Dungeoneer's Pack",
+            "items": [
+              {
+                "index": "dungeoneers-pack",
+                "name": "Dungeoneer's Pack",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "desc": "any simple weapon",
+        "options": [
+          {
+            "label": "Any Simple Weapons",
+            "items": [
+              {
+                "index": "choice-simple-weapons",
+                "name": "Any Simple Weapons",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "simple-weapons"
+          }
+        ]
+      }
+    ]
+  },
+  "wizard": {
+    "guaranteed": [
+      {
+        "index": "spellbook",
+        "name": "Spellbook",
+        "quantity": 1
+      }
+    ],
+    "choices": [
+      {
+        "desc": "(a) a quarterstaff or (b) a dagger",
+        "options": [
+          {
+            "label": "Quarterstaff",
+            "items": [
+              {
+                "index": "quarterstaff",
+                "name": "Quarterstaff",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Dagger",
+            "items": [
+              {
+                "index": "dagger",
+                "name": "Dagger",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "desc": "(a) a component pouch or (b) an arcane focus",
+        "options": [
+          {
+            "label": "Component pouch",
+            "items": [
+              {
+                "index": "component-pouch",
+                "name": "Component pouch",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "arcane focus",
+            "items": [
+              {
+                "index": "choice-arcane-focus",
+                "name": "arcane focus",
+                "quantity": 1
+              }
+            ],
+            "weaponCategory": "arcane-foci"
+          }
+        ]
+      },
+      {
+        "desc": "(a) a scholar’s pack or (b) an explorer’s pack",
+        "options": [
+          {
+            "label": "Scholar's Pack",
+            "items": [
+              {
+                "index": "scholars-pack",
+                "name": "Scholar's Pack",
+                "quantity": 1
+              }
+            ]
+          },
+          {
+            "label": "Explorer's Pack",
+            "items": [
+              {
+                "index": "explorers-pack",
+                "name": "Explorer's Pack",
+                "quantity": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
