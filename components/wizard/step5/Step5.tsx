@@ -16,6 +16,10 @@ function getWeaponsForCategory(category: string): WeaponEntry[] {
   return w[category] ?? []
 }
 
+function isWeaponCategory(category: string): boolean {
+  return category.startsWith('simple') || category.startsWith('martial')
+}
+
 interface Props {
   characterId: string
   initial: Partial<Character>
@@ -56,7 +60,7 @@ export function Step5({ characterId, initial, classEquipment }: Props) {
     classEquipment.choices.every((group, i) => {
       if (!(i in selections)) return false
       const opt = group.options[selections[i]]
-      return !opt?.weaponCategory || i in weaponSelections
+      return !opt?.weaponCategory || !isWeaponCategory(opt.weaponCategory) || i in weaponSelections
     })
 
   function handleNext() {
@@ -145,7 +149,7 @@ export function Step5({ characterId, initial, classEquipment }: Props) {
                       {selected && !opt.weaponCategory && <span className="ml-auto text-amber-400 text-base shrink-0">✓</span>}
                     </div>
                   </button>
-                  {selected && opt.weaponCategory && (
+                  {selected && opt.weaponCategory && isWeaponCategory(opt.weaponCategory) && (
                     <div className="mt-1 ml-9 px-3 py-3">
                       <p className="text-stone-500 text-xs mb-2">Choose a specific weapon:</p>
                       <div className="flex flex-wrap gap-2">

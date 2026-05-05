@@ -1,3 +1,9 @@
+export interface Profile {
+  id: string
+  email: string | null
+  is_dm: boolean
+}
+
 export interface EquipmentItem {
   index: string
   name: string
@@ -16,7 +22,7 @@ export interface Character {
   background: string | null
   skills: string[] | null
   ability_scores: AbilityScores | null
-  ability_score_method: 'standard_array' | 'point_buy' | 'rolled' | null
+  ability_score_method: 'standard_array' | 'point_buy' | 'rolled' | 'recommended' | null
   equipment: EquipmentItem[] | null
   level: number | null
   name: string | null

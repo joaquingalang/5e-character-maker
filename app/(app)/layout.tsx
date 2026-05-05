@@ -9,6 +9,14 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   if (!user) redirect('/login')
 
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('is_dm')
+    .eq('id', user.id)
+    .single()
+
+  const isDM = profile?.is_dm ?? false
+
   return (
     <div className="min-h-full flex flex-col">
       <header className="border-b border-stone-800 bg-stone-950/80 backdrop-blur sticky top-0 z-10">
@@ -17,6 +25,11 @@ export default async function AppLayout({ children }: { children: React.ReactNod
             ⚔ Character Forge
           </Link>
           <div className="flex items-center gap-4">
+            {isDM && (
+              <Link href="/dm" className="text-purple-400 hover:text-purple-300 text-sm transition-colors">
+                DM View
+              </Link>
+            )}
             <span className="text-stone-500 text-sm hidden sm:block">{user.email}</span>
             <form action={signOut}>
               <button

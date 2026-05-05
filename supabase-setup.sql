@@ -60,3 +60,55 @@ $$ language plpgsql;
 create trigger characters_updated_at
   before update on characters
   for each row execute function update_updated_at();
+
+-- ============================================================
+-- Profiles table (user roles)
+-- Run this block after the characters block above
+-- ============================================================
+
+create table profiles (
+  id     uuid primary key references auth.users(id) on delete cascade,
+  email  text,
+  is_dm  boolean not null default false
+);
+
+alter table profiles enable row level security;
+
+-- Security-definer helper — avoids recursive RLS when policies query profiles
+create or replace function is_dm()
+returns boolean as $$
+  select coalesce((select is_dm from profiles where id = auth.uid()), false);
+$$ language sql security definer stable;
+
+-- Users can read their own profile
+create policy "Users can read own profile" on profiles
+  for select using (auth.uid() = id);
+
+-- DMs can read all profiles
+create policy "DMs can read all profiles" on profiles
+  for select using (is_dm());
+
+-- DMs can read all characters (supplements the per-user policy)
+create policy "DMs can read all characters" on characters
+  for select using (is_dm());
+
+-- Auto-create profile on new signup
+create or replace function handle_new_user()
+returns trigger as $$
+begin
+  insert into profiles (id, email) values (new.id, new.email);
+  return new;
+end;
+$$ language plpgsql security definer;
+
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute function handle_new_user();
+
+-- Backfill existing users
+insert into profiles (id, email)
+select id, email from auth.users
+on conflict (id) do nothing;
+
+-- Set Joaquin as DM
+update profiles set is_dm = true where email = 'galang.joaquin.dev@gmail.com';

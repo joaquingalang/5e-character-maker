@@ -3,13 +3,14 @@
 import { useState, useTransition, useRef } from 'react'
 import { saveStep4 } from '@/app/actions/character'
 import type { Character, AbilityScores } from '@/lib/types'
+import { CLASS_ABILITY_PRIORITIES, DEFAULT_PRIORITY } from '@/lib/constants/class-ability-priorities'
 
 interface Props {
   characterId: string
   initial: Partial<Character>
 }
 
-type Method = 'standard_array' | 'point_buy' | 'rolled'
+type Method = 'standard_array' | 'point_buy' | 'rolled' | 'recommended'
 type AbilityKey = keyof AbilityScores
 
 const ABILITIES: { key: AbilityKey; label: string; abbr: string }[] = [
@@ -363,18 +364,92 @@ function DiceRollTab({
   )
 }
 
+const PRIORITY_LABELS = ['Primary', 'Secondary', 'Tertiary', 'Quaternary', 'Quinary', 'Dump Stat']
+
+function buildRecommendedScores(className: string | null | undefined): AbilityScores {
+  const priority = (className && CLASS_ABILITY_PRIORITIES[className]) ?? DEFAULT_PRIORITY
+  const scores: AbilityScores = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 }
+  STANDARD_ARRAY.forEach((val, i) => { scores[priority[i]] = val })
+  return scores
+}
+
+// Recommended tab — read-only, auto-assigned by class priority
+function RecommendedTab({
+  scores,
+  className,
+}: {
+  scores: AbilityScores
+  className: string | null | undefined
+}) {
+  const priority = (className && CLASS_ABILITY_PRIORITIES[className]) ?? DEFAULT_PRIORITY
+  const displayName = className
+    ? className.charAt(0).toUpperCase() + className.slice(1)
+    : 'your class'
+
+  return (
+    <div className="space-y-5">
+      <p className="text-stone-400 text-sm">
+        Scores from the Standard Array are automatically assigned based on common{' '}
+        <span className="text-amber-400 font-medium">{displayName}</span> priorities.
+      </p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {priority.map((key, i) => {
+          const ability = ABILITIES.find(a => a.key === key)!
+          const val = scores[key]
+          const label = PRIORITY_LABELS[i]
+          const isDump = i === 5
+
+          return (
+            <div
+              key={key}
+              className="flex items-center gap-4 rounded-xl p-3 border border-stone-700 bg-stone-900"
+            >
+              <div className="w-14 shrink-0 flex flex-col items-center justify-center h-12 rounded-xl border-2 border-amber-500/60 bg-amber-500/10">
+                <span className="text-amber-400 font-bold text-lg leading-none">{val}</span>
+                <span className="text-amber-600 text-xs">{modifier(val)}</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-stone-200 font-semibold">{ability.label}</p>
+                <p className="text-stone-600 text-xs">{ability.abbr}</p>
+              </div>
+              <span className={`text-xs font-medium px-2 py-0.5 rounded-full shrink-0 ${
+                isDump
+                  ? 'bg-stone-800 text-stone-500'
+                  : i === 0
+                  ? 'bg-amber-500/20 text-amber-400'
+                  : 'bg-stone-800 text-stone-400'
+              }`}>
+                {label}
+              </span>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 // Main Step4 component
 export function Step4({ characterId, initial }: Props) {
   const [method, setMethod] = useState<Method>(
-    (initial.ability_score_method as Method) ?? 'standard_array'
+    (initial.ability_score_method as Method) ?? 'recommended'
   )
-  const [scores, setScores] = useState<AbilityScores>(
-    initial.ability_scores ?? { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 }
-  )
+  const [scores, setScores] = useState<AbilityScores>(() => {
+    if (initial.ability_scores) return initial.ability_scores
+    if (!initial.ability_score_method || initial.ability_score_method === 'recommended') {
+      return buildRecommendedScores(initial.class)
+    }
+    if (initial.ability_score_method === 'point_buy') {
+      return { str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8 }
+    }
+    return { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 }
+  })
   const [isPending, startTransition] = useTransition()
 
   function initScoresForMethod(m: Method) {
     if (m === 'point_buy') setScores({ str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8 })
+    else if (m === 'recommended') setScores(buildRecommendedScores(initial.class))
     else setScores({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 })
     setMethod(m)
   }
@@ -387,6 +462,7 @@ export function Step4({ characterId, initial }: Props) {
   }
 
   const TABS: { key: Method; label: string; desc: string }[] = [
+    { key: 'recommended', label: 'Recommended', desc: 'Auto-assigns scores to the best stats for your class' },
     { key: 'standard_array', label: 'Standard Array', desc: 'Assign preset scores: 15, 14, 13, 12, 10, 8' },
     { key: 'point_buy', label: 'Point Buy', desc: 'Spend 27 points to customise each score (8–15)' },
     { key: 'rolled', label: 'Roll Dice', desc: 'Roll 4d6 and drop the lowest for each ability' },
@@ -403,7 +479,7 @@ export function Step4({ characterId, initial }: Props) {
       </div>
 
       {/* Method tabs */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {TABS.map(tab => (
           <button
             key={tab.key}
@@ -425,6 +501,9 @@ export function Step4({ characterId, initial }: Props) {
 
       {/* Active method UI */}
       <div>
+        {method === 'recommended' && (
+          <RecommendedTab scores={scores} className={initial.class} />
+        )}
         {method === 'standard_array' && (
           <StandardArrayTab scores={scores} onChange={setScores} />
         )}
