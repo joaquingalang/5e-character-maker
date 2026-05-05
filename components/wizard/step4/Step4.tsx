@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition, useRef } from 'react'
+import { useState, useTransition, useRef, useCallback } from 'react'
 import { saveStep4 } from '@/app/actions/character'
 import type { Character, AbilityScores } from '@/lib/types'
 import { CLASS_ABILITY_PRIORITIES, DEFAULT_PRIORITY } from '@/lib/constants/class-ability-priorities'
@@ -273,92 +273,229 @@ function PointBuyTab({
   )
 }
 
-// Dice Roll tab
+type RolledValue = { id: number; dice: number[]; total: number }
+type RollAssignments = Record<AbilityKey, number | null>
+
+function generateRolledSet(): RolledValue[] {
+  let values: RolledValue[]
+  do {
+    values = Array.from({ length: 6 }, (_, i) => {
+      const result = roll4d6DropLowest()
+      return { id: i, dice: result.rolls, total: result.total }
+    })
+  } while (values.reduce((sum, v) => sum + v.total, 0) < 75)
+  return values
+}
+
+// Dice Roll tab — drag-and-drop (same pattern as StandardArrayTab)
 function DiceRollTab({
-  scores,
   onChange,
 }: {
   scores: AbilityScores
   onChange: (updated: AbilityScores) => void
 }) {
-  const [rolls, setRolls] = useState<Record<AbilityKey, { dice: number[]; total: number } | null>>(
-    () => Object.fromEntries(ABILITIES.map(a => [a.key, null])) as Record<AbilityKey, null>
+  const [rolledValues, setRolledValues] = useState<RolledValue[]>([])
+  const [assignments, setAssignments] = useState<RollAssignments>(
+    () => Object.fromEntries(ABILITIES.map(a => [a.key, null])) as RollAssignments
   )
+  const [dropTarget, setDropTarget] = useState<AbilityKey | null>(null)
+  const dragIdRef = useRef<number | null>(null)
+  const [dragId, setDragId] = useState<number | null>(null)
+  const [dragFrom, setDragFrom] = useState<'pool' | AbilityKey | null>(null)
 
-  function rollAll() {
-    const newRolls: Record<AbilityKey, { dice: number[]; total: number }> = {} as never
-    const newScores: AbilityScores = {} as never
-    for (const ability of ABILITIES) {
-      const result = roll4d6DropLowest()
-      newRolls[ability.key] = { dice: result.rolls, total: result.total }
-      newScores[ability.key] = result.total
-    }
-    setRolls(newRolls)
+  const syncScores = useCallback((newAssignments: RollAssignments, values: RolledValue[]) => {
+    const newScores = Object.fromEntries(
+      ABILITIES.map(a => {
+        const id = newAssignments[a.key]
+        const rv = id !== null ? values.find(v => v.id === id) : null
+        return [a.key, rv ? rv.total : 0]
+      })
+    ) as unknown as AbilityScores
     onChange(newScores)
+  }, [onChange])
+
+  function doRollAll() {
+    const values = generateRolledSet()
+    const fresh = Object.fromEntries(ABILITIES.map(a => [a.key, null])) as RollAssignments
+    setRolledValues(values)
+    setAssignments(fresh)
+    onChange({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 })
   }
 
-  function rollOne(key: AbilityKey) {
-    const result = roll4d6DropLowest()
-    setRolls(prev => ({ ...prev, [key]: { dice: result.rolls, total: result.total } }))
-    onChange({ ...scores, [key]: result.total })
+  function startDrag(id: number, from: 'pool' | AbilityKey) {
+    dragIdRef.current = id
+    setDragId(id)
+    setDragFrom(from)
+  }
+
+  function endDrag() {
+    dragIdRef.current = null
+    setDragId(null)
+    setDragFrom(null)
+    setDropTarget(null)
+  }
+
+  function handleDrop(targetKey: AbilityKey) {
+    const id = dragIdRef.current
+    if (id === null) return
+    const newAssignments = { ...assignments }
+    for (const k of Object.keys(newAssignments) as AbilityKey[]) {
+      if (newAssignments[k] === id) newAssignments[k] = null
+    }
+    newAssignments[targetKey] = id
+    setAssignments(newAssignments)
+    syncScores(newAssignments, rolledValues)
+    endDrag()
+  }
+
+  function clearSlot(key: AbilityKey) {
+    const newAssignments = { ...assignments, [key]: null }
+    setAssignments(newAssignments)
+    syncScores(newAssignments, rolledValues)
+  }
+
+  const assignedIds = Object.values(assignments).filter((id): id is number => id !== null)
+  const poolValues = rolledValues.filter(v => !assignedIds.includes(v.id))
+  const assignedCount = assignedIds.length
+  const rollTotal = rolledValues.reduce((s, v) => s + v.total, 0)
+
+  if (rolledValues.length === 0) {
+    return (
+      <div className="space-y-4">
+        <p className="text-stone-400 text-sm">
+          Roll 4d6 and drop the lowest for each score. Sets totalling under 75 are automatically re-rolled.
+        </p>
+        <button
+          type="button"
+          onClick={doRollAll}
+          className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold rounded-lg text-sm transition-colors"
+        >
+          🎲 Roll
+        </button>
+      </div>
+    )
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       <div className="flex items-center justify-between">
-        <p className="text-stone-400 text-sm">Roll 4d6, drop the lowest die for each ability score.</p>
+        <p className="text-stone-400 text-sm">
+          Drag a rolled score onto an ability slot to assign it.
+          You can also drag between slots to swap.
+        </p>
         <button
           type="button"
-          onClick={rollAll}
+          onClick={doRollAll}
           className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold rounded-lg text-sm transition-colors"
         >
-          🎲 Roll All
+          🎲 Re-roll All
         </button>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-        {ABILITIES.map(ability => {
-          const roll = rolls[ability.key]
-          return (
-            <div
-              key={ability.key}
-              className="flex items-center gap-3 bg-stone-900 border border-stone-700 rounded-xl p-3"
-            >
-              <div className="w-10 text-center shrink-0">
-                <p className={`font-bold text-xl ${roll ? 'text-stone-100' : 'text-stone-600'}`}>
-                  {roll ? roll.total : '?'}
-                </p>
-                <p className="text-stone-500 text-xs">{roll ? modifier(roll.total) : ''}</p>
-              </div>
-              <div className="flex-1">
-                <p className="text-stone-300 text-sm font-medium">{ability.label}</p>
-                {roll && (
-                  <div className="flex gap-1 mt-0.5">
-                    {roll.dice.map((d, i) => (
-                      <span
-                        key={i}
-                        className={`text-xs px-1.5 py-0.5 rounded ${
-                          i === 0
-                            ? 'text-stone-600 line-through'
-                            : 'text-stone-400 bg-stone-800'
-                        }`}
-                      >
-                        {d}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <button
-                type="button"
-                onClick={() => rollOne(ability.key)}
-                className="px-3 py-1.5 border border-stone-600 hover:border-amber-500/50 text-stone-400 hover:text-amber-400 rounded-lg text-xs transition-colors"
+      {/* Score pool */}
+      <div>
+        <p className="text-stone-500 text-xs uppercase tracking-widest mb-2">
+          Rolled Scores — Total: {rollTotal}
+        </p>
+        <div className="flex flex-wrap gap-3 min-h-[60px] p-4 bg-stone-950 border border-stone-800 rounded-xl">
+          {poolValues.length === 0 ? (
+            <p className="text-stone-600 text-sm self-center italic">All scores assigned</p>
+          ) : (
+            poolValues.map(rv => (
+              <div
+                key={rv.id}
+                draggable
+                onDragStart={() => startDrag(rv.id, 'pool')}
+                onDragEnd={endDrag}
+                className={`flex flex-col items-center justify-center rounded-xl border-2 border-amber-500/60 bg-amber-500/10 text-amber-400 font-bold cursor-grab active:cursor-grabbing select-none transition-opacity px-3 py-2 ${
+                  dragFrom === 'pool' && dragId === rv.id ? 'opacity-40' : ''
+                }`}
               >
-                🎲 Re-roll
-              </button>
-            </div>
-          )
-        })}
+                <span className="text-xl">{rv.total}</span>
+                <span className="text-amber-600 text-xs font-normal">{modifier(rv.total)}</span>
+                <div className="flex gap-0.5 mt-1">
+                  {rv.dice.map((d, i) => (
+                    <span
+                      key={i}
+                      className={`text-[10px] px-1 py-0.5 rounded ${
+                        i === 0 ? 'text-stone-600 line-through' : 'text-stone-400 bg-stone-800'
+                      }`}
+                    >
+                      {d}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+
+      {/* Ability drop zones */}
+      <div>
+        <p className="text-stone-500 text-xs uppercase tracking-widest mb-2">
+          Ability Scores — {assignedCount}/6 assigned
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {ABILITIES.map(ability => {
+            const assignedId = assignments[ability.key]
+            const rv = assignedId !== null ? rolledValues.find(v => v.id === assignedId) : null
+            const isTarget = dropTarget === ability.key
+            const isDraggingThis = dragFrom === ability.key
+
+            return (
+              <div
+                key={ability.key}
+                onDragOver={e => { e.preventDefault(); setDropTarget(ability.key) }}
+                onDragLeave={() => setDropTarget(null)}
+                onDrop={() => handleDrop(ability.key)}
+                className={`flex items-center gap-4 rounded-xl p-3 border-2 transition-all ${
+                  isTarget
+                    ? 'border-amber-500 bg-amber-500/5'
+                    : rv
+                    ? 'border-stone-700 bg-stone-900'
+                    : 'border-dashed border-stone-700 bg-stone-900'
+                }`}
+              >
+                <div className="w-14 shrink-0 flex items-center justify-center">
+                  {rv ? (
+                    <div
+                      draggable
+                      onDragStart={() => startDrag(rv.id, ability.key)}
+                      onDragEnd={endDrag}
+                      className={`relative w-12 h-12 flex flex-col items-center justify-center rounded-xl border-2 border-amber-500/60 bg-amber-500/10 cursor-grab active:cursor-grabbing select-none transition-opacity ${
+                        isDraggingThis ? 'opacity-40' : ''
+                      }`}
+                    >
+                      <span className="text-amber-400 font-bold text-lg leading-none">{rv.total}</span>
+                      <span className="text-amber-600 text-xs">{modifier(rv.total)}</span>
+                      <button
+                        type="button"
+                        onClick={() => clearSlot(ability.key)}
+                        onMouseDown={e => e.stopPropagation()}
+                        className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-stone-700 hover:bg-red-900/80 text-stone-400 hover:text-red-300 text-xs flex items-center justify-center leading-none transition-colors"
+                        aria-label={`Unassign ${ability.label}`}
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ) : (
+                    <div className={`w-12 h-12 rounded-xl border-2 border-dashed flex items-center justify-center text-sm font-bold transition-colors ${
+                      isTarget ? 'border-amber-500 text-amber-500' : 'border-stone-700 text-stone-700'
+                    }`}>
+                      {isTarget ? '↓' : '–'}
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex-1">
+                  <p className="text-stone-200 font-semibold">{ability.label}</p>
+                  <p className="text-stone-600 text-xs">{ability.abbr}</p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   )

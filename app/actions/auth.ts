@@ -5,8 +5,15 @@ import { redirect } from 'next/navigation'
 
 export async function signUp(email: string, password: string) {
   const supabase = await createClient()
-  const { error } = await supabase.auth.signUp({ email, password })
+  const { data, error } = await supabase.auth.signUp({ email, password })
   if (error) return { error: error.message }
+
+  if (data.user) {
+    await supabase
+      .from('profiles')
+      .upsert({ id: data.user.id, email }, { onConflict: 'id' })
+  }
+
   return { success: 'Check your email to confirm your account, then log in.' }
 }
 

@@ -84,6 +84,13 @@ $$ language sql security definer stable;
 create policy "Users can read own profile" on profiles
   for select using (auth.uid() = id);
 
+-- Users can insert/update their own profile (needed for app-layer upsert fallback)
+create policy "Users can upsert own profile" on profiles
+  for insert with check (auth.uid() = id);
+
+create policy "Users can update own profile" on profiles
+  for update using (auth.uid() = id);
+
 -- DMs can read all profiles
 create policy "DMs can read all profiles" on profiles
   for select using (is_dm());
@@ -96,8 +103,14 @@ create policy "DMs can read all characters" on characters
 create or replace function handle_new_user()
 returns trigger as $$
 begin
-  insert into profiles (id, email) values (new.id, new.email);
+  insert into profiles (id, email)
+  values (new.id, new.email)
+  on conflict (id) do nothing;
   return new;
+exception
+  when others then
+    -- Never block auth if profile creation fails; the app upserts as fallback.
+    return new;
 end;
 $$ language plpgsql security definer;
 
