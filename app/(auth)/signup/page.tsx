@@ -8,13 +8,11 @@ export default function SignupPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
-  const [success, setSuccess] = useState('')
   const [isPending, startTransition] = useTransition()
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError('')
-    setSuccess('')
     if (password.length < 6) {
       setError('Password must be at least 6 characters.')
       return
@@ -22,7 +20,6 @@ export default function SignupPage() {
     startTransition(async () => {
       const result = await signUp(email, password)
       if (result?.error) setError(result.error)
-      else if (result?.success) setSuccess(result.success)
     })
   }
 
@@ -43,12 +40,6 @@ export default function SignupPage() {
               {error}
             </div>
           )}
-          {success && (
-            <div className="bg-green-900/40 border border-green-700 text-green-300 rounded-lg px-4 py-3 text-sm">
-              {success}
-            </div>
-          )}
-
           <div>
             <label className="block text-stone-300 text-sm font-medium mb-2" htmlFor="email">
               Email address
@@ -81,7 +72,7 @@ export default function SignupPage() {
 
           <button
             type="submit"
-            disabled={isPending || !!success}
+            disabled={isPending}
             className="w-full bg-amber-500 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed text-stone-950 font-semibold py-3 rounded-lg transition-colors"
           >
             {isPending ? 'Creating account…' : 'Create Account'}

@@ -14,7 +14,7 @@ export async function signUp(email: string, password: string) {
       .upsert({ id: data.user.id, email }, { onConflict: 'id' })
   }
 
-  return { success: 'Check your email to confirm your account, then log in.' }
+  redirect('/dashboard')
 }
 
 export async function signIn(email: string, password: string) {
