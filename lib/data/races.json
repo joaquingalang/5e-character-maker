@@ -1,0 +1,1381 @@
+[
+  {
+    "index": "dragonborn",
+    "name": "Dragonborn",
+    "description": "Born of dragons, as their name proclaims, the dragonborn walk proudly through a world that greets them with fearful incomprehension. Shaped by draconic gods or the dragons themselves, dragonborn originally hatched from dragon eggs as a unique race, combining the best attributes of dragons and humanoids. Some dragonborn are faithful servants to true dragons, others form the ranks of soldiers in great wars, and still others find themselves adrift, with no clear calling in life.",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "str",
+          "name": "Strength"
+        },
+        "bonus": 2
+      },
+      {
+        "ability_score": {
+          "index": "cha",
+          "name": "Charisma"
+        },
+        "bonus": 1
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": [
+      {
+        "index": "draconblood",
+        "name": "Draconblood",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "int",
+              "name": "Intelligence"
+            },
+            "bonus": 2
+          },
+          {
+            "ability_score": {
+              "index": "cha",
+              "name": "Charisma"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Darkvision",
+          "Forceful Presence"
+        ]
+      },
+      {
+        "index": "ravenite",
+        "name": "Ravenite",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "str",
+              "name": "Strength"
+            },
+            "bonus": 2
+          },
+          {
+            "ability_score": {
+              "index": "con",
+              "name": "Constitution"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Darkvision",
+          "Vengeful Assault"
+        ]
+      }
+    ]
+  },
+  {
+    "index": "dwarf",
+    "name": "Dwarf",
+    "description": "Kingdoms rich in ancient grandeur, halls carved into the roots of mountains, the echoing of picks and hammers in deep mines and blazing forges, a commitment to clan and tradition, and a burning hatred of goblins and orcs – these common threads unite all dwarves.",
+    "speed": 25,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "con",
+          "name": "Constitution"
+        },
+        "bonus": 2
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": [
+      {
+        "index": "hill-dwarf",
+        "name": "Hill Dwarf",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "wis",
+              "name": "Wisdom"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Dwarven Toughness"
+        ]
+      },
+      {
+        "index": "mountain-dwarf",
+        "name": "Mountain Dwarf",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "str",
+              "name": "Strength"
+            },
+            "bonus": 2
+          }
+        ],
+        "traits": [
+          "Dwarven Armor Training"
+        ]
+      },
+      {
+        "index": "mark-of-warding",
+        "name": "Mark of Warding",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "int",
+              "name": "Intelligence"
+            },
+            "bonus": 1
+          },
+          {
+            "ability_score": {
+              "index": "con",
+              "name": "Constitution"
+            },
+            "bonus": 2
+          },
+          {
+            "ability_score": {
+              "index": "wis",
+              "name": "Wisdom"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Warder's Intuition",
+          "Wards and Seals",
+          "Spells of the Mark",
+          "Age",
+          "Alignment",
+          "Size",
+          "Speed",
+          "Darkvision",
+          "Dwarven Resilience",
+          "Dwarven Toughness",
+          "Artisan's Expertise",
+          "Languages"
+        ]
+      }
+    ]
+  },
+  {
+    "index": "elf",
+    "name": "Elf",
+    "description": "Elves are a magical people of otherworldly grace, living in places of ethereal beauty, in the midst of ancient forests or in silvery spires glittering with faerie light, where soft music drifts through the air and gentle fragrances waft on the breeze. Elves love nature and magic, art and artistry, music and poetry.",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "dex",
+          "name": "Dexterity"
+        },
+        "bonus": 2
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": [
+      {
+        "index": "dark-elf",
+        "name": "Dark Elf",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "cha",
+              "name": "Charisma"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Superior Darkvision",
+          "Sunlight Sensitivity",
+          "Drow Magic",
+          "Drow Weapon Training"
+        ]
+      },
+      {
+        "index": "high-elf",
+        "name": "High Elf",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "int",
+              "name": "Intelligence"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Cantrip",
+          "Elf Weapon Training",
+          "Extra Language"
+        ]
+      },
+      {
+        "index": "wood-elf",
+        "name": "Wood Elf",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "wis",
+              "name": "Wisdom"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Elf Weapon Training",
+          "Fleet of Foot",
+          "Mask of the Wild"
+        ]
+      },
+      {
+        "index": "pallid-elf",
+        "name": "Pallid Elf",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "wis",
+              "name": "Wisdom"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Incisive Sense",
+          "Blessing of the Moonweaver"
+        ]
+      },
+      {
+        "index": "mark-of-shadow",
+        "name": "Mark of Shadow",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "cha",
+              "name": "Charisma"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Cunning Intuition",
+          "Shape Shadows",
+          "Spells of the Mark"
+        ]
+      },
+      {
+        "index": "bishtahar-tirahar-elves",
+        "name": "Bishtahar/Tirahar Elves",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "wis",
+              "name": "Wisdom"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Elf Weapon Training",
+          "Fleet of Foot",
+          "Mask of the Wild"
+        ]
+      },
+      {
+        "index": "vahadar-elf",
+        "name": "Vahadar Elf",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "wis",
+              "name": "Wisdom"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Elf Weapon Training",
+          "Cantrip",
+          "Extra Language"
+        ]
+      },
+      {
+        "index": "zendikar-features",
+        "name": "Zendikar Features",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "wis",
+              "name": "Wisdom"
+            },
+            "bonus": 2
+          }
+        ],
+        "traits": [
+          "Age",
+          "Alignment",
+          "Size",
+          "Speed",
+          "Darkvision",
+          "Fey Ancestry",
+          "Trance",
+          "Keen Senses",
+          "Languages"
+        ]
+      },
+      {
+        "index": "tajuru",
+        "name": "Tajuru",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "cha",
+              "name": "Charisma"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Skill Versatility"
+        ]
+      },
+      {
+        "index": "juraga",
+        "name": "Juraga",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "dex",
+              "name": "Dexterity"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Elf Weapon Training",
+          "Fleet of Foot",
+          "Mask of the Wild"
+        ]
+      },
+      {
+        "index": "mul-daya",
+        "name": "Mul Daya",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "str",
+              "name": "Strength"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Superior Darkvision",
+          "Sunlight Sensitivity",
+          "Mul Daya Magic",
+          "Elf Weapon Training"
+        ]
+      },
+      {
+        "index": "grugach-elf",
+        "name": "Grugach Elf",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "str",
+              "name": "Strength"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Grugach Weapon Training",
+          "Cantrip",
+          "Languages"
+        ]
+      }
+    ]
+  },
+  {
+    "index": "gnome",
+    "name": "Gnome",
+    "description": "A constant hum of busy activity pervades the warrens and neighborhoods where gnomes form their close-knit communities. Louder sounds punctuate the hum: a crunch of grinding gears here, a minor explosion there, a yelp of surprise or triumph, and especially bursts of laughter. Gnomes take delight in life, enjoying every moment of invention, exploration, investigation, creation, and play.",
+    "speed": 25,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "int",
+          "name": "Intelligence"
+        },
+        "bonus": 2
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": [
+      {
+        "index": "forest",
+        "name": "Forest",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "dex",
+              "name": "Dexterity"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Natural Illusionist",
+          "Speak with Small Beasts"
+        ]
+      },
+      {
+        "index": "rock",
+        "name": "Rock",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "con",
+              "name": "Constitution"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Artificer's Lore",
+          "Tinker"
+        ]
+      },
+      {
+        "index": "mark-of-scribing",
+        "name": "Mark of Scribing",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "cha",
+              "name": "Charisma"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Gifted Scribe",
+          "Scribe's Insight",
+          "Spells of the Mark"
+        ]
+      }
+    ]
+  },
+  {
+    "index": "half-elf",
+    "name": "Half Elf",
+    "description": "Walking in two worlds but truly belonging to neither, half-elves combine what some say are the best qualities of their elf and human parents: human curiosity, inventiveness, and ambition tempered by the refined senses, love of nature, and artistic tastes of the elves.",
+    "speed": 35,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "str",
+          "name": "Strength"
+        },
+        "bonus": 1
+      },
+      {
+        "ability_score": {
+          "index": "dex",
+          "name": "Dexterity"
+        },
+        "bonus": 1
+      },
+      {
+        "ability_score": {
+          "index": "con",
+          "name": "Constitution"
+        },
+        "bonus": 1
+      },
+      {
+        "ability_score": {
+          "index": "int",
+          "name": "Intelligence"
+        },
+        "bonus": 1
+      },
+      {
+        "ability_score": {
+          "index": "wis",
+          "name": "Wisdom"
+        },
+        "bonus": 1
+      },
+      {
+        "ability_score": {
+          "index": "cha",
+          "name": "Charisma"
+        },
+        "bonus": 1
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": [
+      {
+        "index": "mark-of-detection",
+        "name": "Mark of Detection",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "wis",
+              "name": "Wisdom"
+            },
+            "bonus": 2
+          }
+        ],
+        "traits": [
+          "Deductive Intuition",
+          "Magical Detection",
+          "Spells of the Mark"
+        ]
+      },
+      {
+        "index": "mark-of-storm",
+        "name": "Mark of Storm",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "cha",
+              "name": "Charisma"
+            },
+            "bonus": 2
+          },
+          {
+            "ability_score": {
+              "index": "dex",
+              "name": "Dexterity"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Windwright's Intuition",
+          "Storm's Boon",
+          "Headwinds",
+          "Spells of the Mark"
+        ]
+      }
+    ]
+  },
+  {
+    "index": "half-orc",
+    "name": "Half Orc",
+    "description": "When alliances between humans and orcs are sealed by marriages, half-orcs are born. Some half-orcs rise to become proud chiefs of orc tribes, their human blood giving them an edge over their full-blooded orc rivals. Some venture into the world to prove their worth among humans and other more civilized races. Many of these become adventurers, achieving greatness for their mighty deeds and notoriety for their barbaric customs and savage fury.",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "str",
+          "name": "Strength"
+        },
+        "bonus": 2
+      },
+      {
+        "ability_score": {
+          "index": "con",
+          "name": "Constitution"
+        },
+        "bonus": 1
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": [
+      {
+        "index": "mark-of-finding",
+        "name": "Mark of Finding",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "wis",
+              "name": "Wisdom"
+            },
+            "bonus": 2
+          },
+          {
+            "ability_score": {
+              "index": "con",
+              "name": "Constitution"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Darkvision",
+          "Hunter's Intuition",
+          "Finder's Magic",
+          "Languages",
+          "Spells of the Mark"
+        ]
+      }
+    ]
+  },
+  {
+    "index": "halfling",
+    "name": "Halfling",
+    "description": "The comforts of home are the goals of most halflings' lives: a place to settle in peace and quiet, far from marauding monsters and clashing armies. Others form nomadic bands that travel constantly, lured by the open road and the wide horizon to discover the wonders of new lands and peoples. Halflings work readily with others, and they are loyal to their friends, whether halfling or otherwise. They can display remarkable ferocity when their friends, families, or communities are threatened.",
+    "speed": 25,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "dex",
+          "name": "Dexterity"
+        },
+        "bonus": 2
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": [
+      {
+        "index": "lightfoot",
+        "name": "Lightfoot",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "cha",
+              "name": "Charisma"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Naturally Stealthy"
+        ]
+      },
+      {
+        "index": "stout",
+        "name": "Stout",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "con",
+              "name": "Constitution"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Stout Resilience"
+        ]
+      },
+      {
+        "index": "ghostwise",
+        "name": "Ghostwise",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "wis",
+              "name": "Wisdom"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Silent Speech"
+        ]
+      },
+      {
+        "index": "lotusden",
+        "name": "Lotusden",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "wis",
+              "name": "Wisdom"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Children of the Woods",
+          "Timberwalk"
+        ]
+      },
+      {
+        "index": "mark-of-hospitality",
+        "name": "Mark of Hospitality",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "cha",
+              "name": "Charisma"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Ever Hospitable",
+          "Innkeeper's Magic",
+          "Spells of the Mark"
+        ]
+      },
+      {
+        "index": "mark-of-healing",
+        "name": "Mark of Healing",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "wis",
+              "name": "Wisdom"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Medical Intuition",
+          "Healing Touch",
+          "Spells of the Mark"
+        ]
+      }
+    ]
+  },
+  {
+    "index": "human",
+    "name": "Human",
+    "description": "In the reckonings of most worlds, humans are the youngest of the common races, late to arrive on the world scene and short-lived in comparison to dwarves, elves, and dragons. Perhaps it is because of their shorter lives that they strive to achieve as much as they can in the years they are given. Or maybe they feel they have something to prove to the elder races, and that's why they build their mighty empires on the foundation of conquest and trade. Whatever drives them, humans are the innovators, the achievers, and the pioneers of the worlds.",
+    "speed": 30,
+    "ability_bonuses": [],
+    "source": "Player's Handbook",
+    "subraces": []
+  },
+  {
+    "index": "tiefling",
+    "name": "Tiefling",
+    "description": "To be greeted with stares and whispers, to suffer violence and insult on the street, to see mistrust and fear in every eye: this is the lot of the tiefling. And to twist the knife, tieflings know that this is because a pact struck generations ago infused the essence of Asmodeus, overlord of the Nine Hells (and many of the other powerful devils serving under him) into their bloodline. Their appearance and their nature are not their fault but the result of an ancient sin, for which they and their children and their children's children will always be held accountable.",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "cha",
+          "name": "Charisma"
+        },
+        "bonus": 2
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": [
+      {
+        "index": "bloodline-of-asmodeus",
+        "name": "Bloodline of Asmodeus",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "int",
+              "name": "Intelligence"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Infernal Legacy"
+        ]
+      },
+      {
+        "index": "bloodline-of-baalzebul",
+        "name": "Bloodline of Baalzebul",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "int",
+              "name": "Intelligence"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Legacy of Maladomini"
+        ]
+      },
+      {
+        "index": "bloodline-of-dispater",
+        "name": "Bloodline of Dispater",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "dex",
+              "name": "Dexterity"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Legacy of Dis"
+        ]
+      },
+      {
+        "index": "bloodline-of-fierna",
+        "name": "Bloodline of Fierna",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "wis",
+              "name": "Wisdom"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Legacy of Phlegethos"
+        ]
+      },
+      {
+        "index": "bloodline-of-glasya",
+        "name": "Bloodline of Glasya",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "dex",
+              "name": "Dexterity"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Legacy of Malbolge"
+        ]
+      },
+      {
+        "index": "bloodline-of-levistus",
+        "name": "Bloodline of Levistus",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "con",
+              "name": "Constitution"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Legacy of Stygia"
+        ]
+      },
+      {
+        "index": "bloodline-of-mammon",
+        "name": "Bloodline of Mammon",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "int",
+              "name": "Intelligence"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Legacy of Minauros"
+        ]
+      },
+      {
+        "index": "bloodline-of-mephistopheles",
+        "name": "Bloodline of Mephistopheles",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "int",
+              "name": "Intelligence"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Legacy of Cania"
+        ]
+      },
+      {
+        "index": "bloodline-of-zariel",
+        "name": "Bloodline of Zariel",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "str",
+              "name": "Strength"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Legacy of Avernus"
+        ]
+      },
+      {
+        "index": "variant-tiefling",
+        "name": "Variant Tiefling",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "int",
+              "name": "Intelligence"
+            },
+            "bonus": 1
+          },
+          {
+            "ability_score": {
+              "index": "dex",
+              "name": "Dexterity"
+            },
+            "bonus": 2
+          }
+        ],
+        "traits": [
+          "Appearance",
+          "Devil's Tongue",
+          "Hellfire",
+          "Winged"
+        ]
+      },
+      {
+        "index": "abyssal-tiefling",
+        "name": "Abyssal Tiefling",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "con",
+              "name": "Constitution"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Abyssal Arcana",
+          "Abyssal Fortitude",
+          "Languages"
+        ]
+      }
+    ]
+  },
+  {
+    "index": "aarakocra",
+    "name": "Aarakocra",
+    "description": "A winged people who originated on the Elemental Plane of Air, aarakocra soar through the sky wherever they wander. The first aarakocra served the Wind Dukes of Aaqa — mighty beings of air — and were imbued with a measure of their masters’ power over winds. Their descendants still command echoes of that power.",
+    "speed": 50,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "dex",
+          "name": "Dexterity"
+        },
+        "bonus": 2
+      },
+      {
+        "ability_score": {
+          "index": "wis",
+          "name": "Wisdom"
+        },
+        "bonus": 1
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": []
+  },
+  {
+    "index": "aasimar",
+    "name": "Aasimar",
+    "description": "Whether descended from a celestial being or infused with heavenly power, aasimar are mortals who carry a spark of the Upper Planes within their souls. They can fan that spark to bring light, ease wounds, and unleash the fury of the heavens.",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "cha",
+          "name": "Charisma"
+        },
+        "bonus": 2
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": [
+      {
+        "index": "protector",
+        "name": "Protector",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "wis",
+              "name": "Wisdom"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Radiant Soul"
+        ]
+      },
+      {
+        "index": "scourge",
+        "name": "Scourge",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "con",
+              "name": "Constitution"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Radiant Consumption"
+        ]
+      },
+      {
+        "index": "fallen",
+        "name": "Fallen",
+        "source": "Player's Handbook",
+        "description": "",
+        "ability_bonuses": [
+          {
+            "ability_score": {
+              "index": "str",
+              "name": "Strength"
+            },
+            "bonus": 1
+          }
+        ],
+        "traits": [
+          "Necrotic Shroud"
+        ]
+      }
+    ]
+  },
+  {
+    "index": "changeling",
+    "name": "Changeling",
+    "description": "With ever-changing appearances, changelings reside in many societies undetected. Each changeling can supernaturally adopt any face they like. For some changelings, a new face is only a disguise. For other changelings, a new face may reveal an aspect of their soul.",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "cha",
+          "name": "Charisma"
+        },
+        "bonus": 2
+      },
+      {
+        "ability_score": {
+          "index": "dex",
+          "name": "Dexterity"
+        },
+        "bonus": 1
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": []
+  },
+  {
+    "index": "fairy",
+    "name": "Fairy",
+    "description": "The Feywild is home to many fantastic peoples, including fairies. Fairies are a wee folk, but not nearly as much so as their pixie and sprite friends. The first fairies spoke Elvish, Goblin, or Sylvan, and encounters with human visitors prompted many of them to learn Common as well.",
+    "speed": 30,
+    "ability_bonuses": [],
+    "source": "Player's Handbook",
+    "subraces": []
+  },
+  {
+    "index": "firbolg",
+    "name": "Firbolg",
+    "description": "Distant cousins of giants, the first firbolgs wandered the primeval forests of the multiverse, and the magic of those forests entwined itself with the firbolgs’ souls. Centuries later, that magic still thrums inside a firbolg, even one who has never lived under the boughs of a great forest.",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "wis",
+          "name": "Wisdom"
+        },
+        "bonus": 2
+      },
+      {
+        "ability_score": {
+          "index": "str",
+          "name": "Strength"
+        },
+        "bonus": 1
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": []
+  },
+  {
+    "index": "goliath",
+    "name": "Goliath",
+    "description": "The first goliaths lived on the highest mountain peaks — far above the tree line, where the air is thin and frigid winds howl. Distantly related to giants and infused with the supernatural essence of their ancestors’ mountainous home, goliaths stand between 7 and 8 feet tall and have a wide array of skin tones resembling different types of stone.",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "str",
+          "name": "Strength"
+        },
+        "bonus": 2
+      },
+      {
+        "ability_score": {
+          "index": "con",
+          "name": "Constitution"
+        },
+        "bonus": 1
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": []
+  },
+  {
+    "index": "harengon",
+    "name": "Harengon",
+    "description": "Harengons originated in the Feywild, where they spoke Sylvan and embodied the spirit of freedom and travel. In time, these rabbitfolk hopped into other worlds, bringing the fey realm’s exuberance with them and learning new languages as they went.",
+    "speed": 30,
+    "ability_bonuses": [],
+    "source": "Player's Handbook",
+    "subraces": []
+  },
+  {
+    "index": "kenku",
+    "name": "Kenku",
+    "description": "Feathered folk who resemble ravens, kenku are blessed with keen observation and supernaturally accurate memories. None of them can remember the origin of the first kenku, however, and they often joke that there are as many kenku origin stories as there are kenku. Some of them paint their genesis as a curse, being a flightless bird people doomed to mimic other people’s creations. Other kenku recite cryptic but beautiful poems about their advent being a blessed event in which they were sent into the multiverse to observe and catalog its many wonders.",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "dex",
+          "name": "Dexterity"
+        },
+        "bonus": 2
+      },
+      {
+        "ability_score": {
+          "index": "wis",
+          "name": "Wisdom"
+        },
+        "bonus": 1
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": []
+  },
+  {
+    "index": "owlin",
+    "name": "Owlin",
+    "description": "Distant kin of giant owls from the Feywild, owlin come in many shapes and sizes, from petite and fluffy to wide-winged and majestic. Owlin have arms and legs like other Humanoids, as well as wings that extend from their back and shoulders. Like owls, owlin are graced with feathers that make no sound when they move or fly, making it easy for them to sneak up on you in the library. Your owlin character might be nocturnal. Or perhaps your character is simply prone to rise later, embodying the common nickname of night owl.",
+    "speed": 30,
+    "ability_bonuses": [],
+    "source": "Player's Handbook",
+    "subraces": []
+  },
+  {
+    "index": "satyr",
+    "name": "Satyr",
+    "description": "Originating in the Feywild — a realm of pure emotion-satyrs thrive on the energy of merriment. They resemble elves but have goatlike legs, cloven hooves, and ram or goat horns. The magic of the fey realm has given them an innate ability to perform, to delight, and to resist magical intrusion. While they’re usually found in the Feywild, satyrs do wander to other planes of existence, most often to the Material Plane. There they seek to bring a bit of their home plane’s splendor to other worlds.",
+    "speed": 35,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "cha",
+          "name": "Charisma"
+        },
+        "bonus": 2
+      },
+      {
+        "ability_score": {
+          "index": "dex",
+          "name": "Dexterity"
+        },
+        "bonus": 1
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": []
+  },
+  {
+    "index": "tabaxi",
+    "name": "Tabaxi",
+    "description": "Created by the Cat Lord—a divine being of the Upper Planes—to blend the qualities of humanoids and cats, tabaxi are a varied people in both attitude and appearance. In some lands, tabaxi live like the cats they resemble, naturally curious and at home in playful environments. In other places, tabaxi live as other folk do, not exhibiting the feline behavior the Cat Lord intended.",
+    "speed": 20,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "dex",
+          "name": "Dexterity"
+        },
+        "bonus": 2
+      },
+      {
+        "ability_score": {
+          "index": "cha",
+          "name": "Charisma"
+        },
+        "bonus": 1
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": []
+  },
+  {
+    "index": "tortle",
+    "name": "Tortle",
+    "description": "Tortles have a saying: “We wear our homes on our backs.” These turtle folk live on many worlds, most often journeying up and down coasts, along waterways, and across the sea. Tortles don’t have a unified story of how they were created, but they all have a sense of being mystically connected to the natural world. Carrying their shelter on their backs gives tortles a special feeling of security wherever they go, for even if they visit a far, unknown country, they have a place to lay their heads.",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "str",
+          "name": "Strength"
+        },
+        "bonus": 2
+      },
+      {
+        "ability_score": {
+          "index": "wis",
+          "name": "Wisdom"
+        },
+        "bonus": 1
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": []
+  },
+  {
+    "index": "triton",
+    "name": "Triton",
+    "description": "Originally from the Elemental Plane of Water, many tritons entered the Material Plane centuries ago in response to the growing threat of evil elementals. Those tritons spread across the worlds’ oceans, protecting the surface from terrors in the deep. Over time, triton have extended their stewardship over the sea floor to the ocean’s surface.",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "ability_score": {
+          "index": "str",
+          "name": "Strength"
+        },
+        "bonus": 1
+      },
+      {
+        "ability_score": {
+          "index": "dex",
+          "name": "Dexterity"
+        },
+        "bonus": 1
+      },
+      {
+        "ability_score": {
+          "index": "con",
+          "name": "Constitution"
+        },
+        "bonus": 1
+      },
+      {
+        "ability_score": {
+          "index": "int",
+          "name": "Intelligence"
+        },
+        "bonus": 1
+      },
+      {
+        "ability_score": {
+          "index": "wis",
+          "name": "Wisdom"
+        },
+        "bonus": 1
+      },
+      {
+        "ability_score": {
+          "index": "cha",
+          "name": "Charisma"
+        },
+        "bonus": 1
+      }
+    ],
+    "source": "Player's Handbook",
+    "subraces": []
+  }
+]

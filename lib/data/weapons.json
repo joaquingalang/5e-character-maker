@@ -1,0 +1,47 @@
+{
+  "simple-melee-weapons": [
+    {"index": "club", "name": "Club"},
+    {"index": "dagger", "name": "Dagger"},
+    {"index": "greatclub", "name": "Greatclub"},
+    {"index": "handaxe", "name": "Handaxe"},
+    {"index": "javelin", "name": "Javelin"},
+    {"index": "light-hammer", "name": "Light Hammer"},
+    {"index": "mace", "name": "Mace"},
+    {"index": "quarterstaff", "name": "Quarterstaff"},
+    {"index": "sickle", "name": "Sickle"},
+    {"index": "spear", "name": "Spear"}
+  ],
+  "simple-ranged-weapons": [
+    {"index": "crossbow-light", "name": "Crossbow, Light"},
+    {"index": "dart", "name": "Dart"},
+    {"index": "shortbow", "name": "Shortbow"},
+    {"index": "sling", "name": "Sling"}
+  ],
+  "martial-melee-weapons": [
+    {"index": "battleaxe", "name": "Battleaxe"},
+    {"index": "flail", "name": "Flail"},
+    {"index": "glaive", "name": "Glaive"},
+    {"index": "greataxe", "name": "Greataxe"},
+    {"index": "greatsword", "name": "Greatsword"},
+    {"index": "halberd", "name": "Halberd"},
+    {"index": "lance", "name": "Lance"},
+    {"index": "longsword", "name": "Longsword"},
+    {"index": "maul", "name": "Maul"},
+    {"index": "morningstar", "name": "Morningstar"},
+    {"index": "pike", "name": "Pike"},
+    {"index": "rapier", "name": "Rapier"},
+    {"index": "scimitar", "name": "Scimitar"},
+    {"index": "shortsword", "name": "Shortsword"},
+    {"index": "trident", "name": "Trident"},
+    {"index": "war-pick", "name": "War Pick"},
+    {"index": "warhammer", "name": "Warhammer"},
+    {"index": "whip", "name": "Whip"}
+  ],
+  "martial-ranged-weapons": [
+    {"index": "blowgun", "name": "Blowgun"},
+    {"index": "crossbow-hand", "name": "Crossbow, Hand"},
+    {"index": "crossbow-heavy", "name": "Crossbow, Heavy"},
+    {"index": "longbow", "name": "Longbow"},
+    {"index": "net", "name": "Net"}
+  ]
+}
