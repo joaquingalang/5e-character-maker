@@ -3,12 +3,14 @@
 import { useState, useTransition } from 'react'
 import { saveStep1 } from '@/app/actions/character'
 import { RACE_DESCRIPTIONS, CLASS_DESCRIPTIONS } from '@/lib/constants/class-skills'
-import type { Character, DnDRaceListItem, DnDClassListItem, DnDSubclassListItem } from '@/lib/types'
+import type { Character, DnDRaceListItem, DnDClassListItem, StaticRace, StaticClass, StaticSubrace, StaticSubclass } from '@/lib/types'
 
 interface Props {
   characterId: string
   races: DnDRaceListItem[]
   classes: DnDClassListItem[]
+  racesDetail: StaticRace[]
+  classesDetail: StaticClass[]
   initial: Partial<Character>
 }
 
@@ -26,44 +28,42 @@ function profBonus(level: number) {
   return Math.ceil(level / 4) + 1
 }
 
-export function Step1({ characterId, races, classes, initial }: Props) {
+export function Step1({ characterId, races, classes, racesDetail, classesDetail, initial }: Props) {
   const [selectedRace, setSelectedRace] = useState(initial.race ?? '')
   const [selectedSubrace, setSelectedSubrace] = useState(initial.subrace ?? '')
   const [selectedClass, setSelectedClass] = useState(initial.class ?? '')
   const [selectedSubclass, setSelectedSubclass] = useState(initial.subclass ?? '')
   const [level, setLevel] = useState(initial.level ?? 1)
-  const [subraces, setSubraces] = useState<Array<{ index: string; name: string }>>([])
-  const [subclasses, setSubclasses] = useState<DnDSubclassListItem[]>([])
-  const [loadingSubraces, setLoadingSubraces] = useState(false)
-  const [loadingSubclasses, setLoadingSubclasses] = useState(false)
+  const [subraces, setSubraces] = useState<StaticSubrace[]>([])
+  const [subclasses, setSubclasses] = useState<StaticSubclass[]>([])
+  const [subraceDetail, setSubraceDetail] = useState<StaticSubrace | null>(null)
+  const [subclassDetail, setSubclassDetail] = useState<StaticSubclass | null>(null)
   const [isPending, startTransition] = useTransition()
 
-  async function handleRaceSelect(raceIndex: string) {
+  function handleRaceSelect(raceIndex: string) {
+    const raceData = racesDetail.find(r => r.index === raceIndex)
     setSelectedRace(raceIndex)
     setSelectedSubrace('')
-    setSubraces([])
-    setLoadingSubraces(true)
-    try {
-      const res = await fetch(`https://www.dnd5eapi.co/api/2014/races/${raceIndex}`)
-      const data = await res.json()
-      setSubraces(data.subraces ?? [])
-    } finally {
-      setLoadingSubraces(false)
-    }
+    setSubraces(raceData?.subraces ?? [])
+    setSubraceDetail(null)
   }
 
-  async function handleClassSelect(classIndex: string) {
+  function handleSubraceSelect(subraceIndex: string) {
+    setSelectedSubrace(subraceIndex)
+    setSubraceDetail(subraces.find(s => s.index === subraceIndex) ?? null)
+  }
+
+  function handleClassSelect(classIndex: string) {
+    const classData = classesDetail.find(c => c.index === classIndex)
     setSelectedClass(classIndex)
     setSelectedSubclass('')
-    setSubclasses([])
-    setLoadingSubclasses(true)
-    try {
-      const res = await fetch(`https://www.dnd5eapi.co/api/2014/classes/${classIndex}/subclasses`)
-      const data = await res.json()
-      setSubclasses(data.results ?? [])
-    } finally {
-      setLoadingSubclasses(false)
-    }
+    setSubclasses(classData?.subclasses ?? [])
+    setSubclassDetail(null)
+  }
+
+  function handleSubclassSelect(subclassIndex: string) {
+    setSelectedSubclass(subclassIndex)
+    setSubclassDetail(subclasses.find(s => s.index === subclassIndex) ?? null)
   }
 
   const needsSubclass = subclasses.length > 0
@@ -93,30 +93,42 @@ export function Step1({ characterId, races, classes, initial }: Props) {
         />
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {races.map(race => {
-            const desc = RACE_DESCRIPTIONS[race.index] ?? 'A proud and ancient people.'
+            const raceData = racesDetail.find(r => r.index === race.index)
+            const desc = RACE_DESCRIPTIONS[race.index] ?? raceData?.description ?? 'A proud and ancient people.'
             const isSelected = selectedRace === race.index
             return (
-              <button
+              <div
                 key={race.index}
-                type="button"
+                role="button"
+                tabIndex={0}
                 onClick={() => handleRaceSelect(race.index)}
-                className={`p-4 rounded-xl border-2 text-left transition-all ${
+                onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && handleRaceSelect(race.index)}
+                className={`p-4 rounded-xl border-2 text-left transition-all cursor-pointer ${
                   isSelected
                     ? 'border-amber-500 bg-amber-500/10'
                     : 'border-stone-700 bg-stone-900 hover:border-stone-500'
                 }`}
               >
-                <p className="font-semibold text-stone-100 capitalize mb-1">{race.name}</p>
+                <div className="flex items-center justify-between mb-1">
+                  <p className="font-semibold text-stone-100 capitalize">{race.name}</p>
+                  <a
+                    href={`http://dnd5e.wikidot.com/lineage:${race.index}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={e => e.stopPropagation()}
+                    className="text-stone-600 hover:text-amber-400 text-xs transition-colors shrink-0 ml-1"
+                    title={`${race.name} on wikidot`}
+                  >
+                    ↗
+                  </a>
+                </div>
                 <p className="text-stone-400 text-xs leading-snug line-clamp-2">{desc}</p>
-              </button>
+              </div>
             )
           })}
         </div>
 
         {/* Subraces */}
-        {loadingSubraces && (
-          <p className="text-stone-500 text-sm mt-4">Loading subraces…</p>
-        )}
         {subraces.length > 0 && (
           <div className="mt-4">
             <p className="text-stone-300 text-sm font-medium mb-3">
@@ -127,7 +139,7 @@ export function Step1({ characterId, races, classes, initial }: Props) {
                 <button
                   key={sr.index}
                   type="button"
-                  onClick={() => setSelectedSubrace(sr.index)}
+                  onClick={() => handleSubraceSelect(sr.index)}
                   className={`px-4 py-2 rounded-lg border text-sm transition-all ${
                     selectedSubrace === sr.index
                       ? 'border-amber-500 bg-amber-500/10 text-amber-400'
@@ -138,6 +150,32 @@ export function Step1({ characterId, races, classes, initial }: Props) {
                 </button>
               ))}
             </div>
+            {subraceDetail && (
+              <div className="mt-3 p-4 rounded-xl bg-stone-800 border border-stone-700">
+                {subraceDetail.description && (
+                  <p className="text-stone-300 text-sm leading-relaxed">{subraceDetail.description}</p>
+                )}
+                {subraceDetail.ability_bonuses.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {subraceDetail.ability_bonuses.map(ab => (
+                      <span
+                        key={ab.ability_score.index}
+                        className="text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded px-2 py-0.5"
+                      >
+                        +{ab.bonus} {ab.ability_score.name}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {subraceDetail.traits.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-1">
+                    {subraceDetail.traits.map(t => (
+                      <span key={t} className="text-xs text-stone-400 border border-stone-600 rounded px-2 py-0.5">{t}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
       </section>
@@ -154,11 +192,13 @@ export function Step1({ characterId, races, classes, initial }: Props) {
             const info = CLASS_DESCRIPTIONS[cls.index]
             const isSelected = selectedClass === cls.index
             return (
-              <button
+              <div
                 key={cls.index}
-                type="button"
+                role="button"
+                tabIndex={0}
                 onClick={() => handleClassSelect(cls.index)}
-                className={`p-4 rounded-xl border-2 text-left transition-all ${
+                onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && handleClassSelect(cls.index)}
+                className={`p-4 rounded-xl border-2 text-left transition-all cursor-pointer ${
                   isSelected
                     ? 'border-amber-500 bg-amber-500/10'
                     : 'border-stone-700 bg-stone-900 hover:border-stone-500'
@@ -166,22 +206,31 @@ export function Step1({ characterId, races, classes, initial }: Props) {
               >
                 <div className="flex items-center justify-between mb-1">
                   <p className="font-semibold text-stone-100 capitalize">{cls.name}</p>
-                  {info && (
-                    <span className="text-xs text-amber-600 font-mono">{info.hitDie}</span>
-                  )}
+                  <div className="flex items-center gap-1.5 shrink-0 ml-1">
+                    {info && (
+                      <span className="text-xs text-amber-600 font-mono">{info.hitDie}</span>
+                    )}
+                    <a
+                      href={`http://dnd5e.wikidot.com/${cls.index}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={e => e.stopPropagation()}
+                      className="text-stone-600 hover:text-amber-400 text-xs transition-colors"
+                      title={`${cls.name} on wikidot`}
+                    >
+                      ↗
+                    </a>
+                  </div>
                 </div>
                 <p className="text-stone-400 text-xs leading-snug line-clamp-2">
                   {info?.flavor ?? 'A versatile class for any adventure.'}
                 </p>
-              </button>
+              </div>
             )
           })}
         </div>
 
         {/* Subclasses */}
-        {loadingSubclasses && (
-          <p className="text-stone-500 text-sm mt-4">Loading subclasses…</p>
-        )}
         {subclasses.length > 0 && (
           <div className="mt-4">
             <p className="text-stone-300 text-sm font-medium mb-3">
@@ -193,7 +242,7 @@ export function Step1({ characterId, races, classes, initial }: Props) {
                 <button
                   key={sc.index}
                   type="button"
-                  onClick={() => setSelectedSubclass(sc.index)}
+                  onClick={() => handleSubclassSelect(sc.index)}
                   className={`px-4 py-2 rounded-lg border text-sm transition-all ${
                     selectedSubclass === sc.index
                       ? 'border-amber-500 bg-amber-500/10 text-amber-400'
@@ -204,6 +253,17 @@ export function Step1({ characterId, races, classes, initial }: Props) {
                 </button>
               ))}
             </div>
+            {subclassDetail && (
+              <div className="mt-3 p-4 rounded-xl bg-stone-800 border border-stone-700">
+                {subclassDetail.flavor && (
+                  <p className="text-stone-500 text-xs italic mb-2">{subclassDetail.flavor}</p>
+                )}
+                {subclassDetail.description && subclassDetail.description !== subclassDetail.flavor && (
+                  <p className="text-stone-300 text-sm leading-relaxed">{subclassDetail.description}</p>
+                )}
+                <p className="text-stone-600 text-xs mt-1">{subclassDetail.source}</p>
+              </div>
+            )}
           </div>
         )}
       </section>

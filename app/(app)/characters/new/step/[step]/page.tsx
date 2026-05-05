@@ -1,6 +1,6 @@
 import { notFound, redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { getRaces, getClasses, getClassEquipment } from '@/lib/dnd-api'
+import { getRaces, getClasses, getFullRaces, getFullClasses, getClassEquipment } from '@/lib/dnd-api'
 import { PHB_BACKGROUNDS } from '@/lib/constants/backgrounds'
 import type { Character } from '@/lib/types'
 
@@ -38,7 +38,10 @@ export default async function WizardStepPage({ params, searchParams }: Props) {
 
   if (stepNum === 1) {
     const [races, classes] = await Promise.all([getRaces(), getClasses()])
-    return <Step1 characterId={id} races={races} classes={classes} initial={char} />
+    const racesDetail = getFullRaces()
+    const classesDetail = getFullClasses()
+    return <Step1 characterId={id} races={races} classes={classes}
+                  racesDetail={racesDetail} classesDetail={classesDetail} initial={char} />
   }
 
   if (stepNum === 2) {
