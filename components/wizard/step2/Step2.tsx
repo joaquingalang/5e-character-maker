@@ -2,8 +2,7 @@
 
 import { useState, useTransition } from 'react'
 import { saveStep2 } from '@/app/actions/character'
-import { PHB_BACKGROUNDS } from '@/lib/constants/backgrounds'
-import type { Character, Background, AISuggestedBackground } from '@/lib/types'
+import type { Character, Background } from '@/lib/types'
 
 interface Props {
   characterId: string
@@ -14,12 +13,10 @@ interface Props {
 function BackgroundCard({
   background,
   isSelected,
-  aiReason,
   onSelect,
 }: {
   background: Background
   isSelected: boolean
-  aiReason?: string
   onSelect: () => void
 }) {
   return (
@@ -36,9 +33,6 @@ function BackgroundCard({
         <p className="font-semibold text-stone-100">{background.name}</p>
         {isSelected && <span className="text-amber-400 text-lg shrink-0">✓</span>}
       </div>
-      {aiReason && (
-        <p className="text-amber-400/80 text-xs italic mb-2">✨ {aiReason}</p>
-      )}
       <p className="text-stone-400 text-sm mb-3">{background.description}</p>
       <div className="flex flex-wrap gap-1">
         {background.skill_proficiencies.map(skill => (
@@ -58,34 +52,9 @@ export function Step2({ characterId, initial, backgrounds }: Props) {
   const [backstory, setBackstory] = useState(initial.backstory ?? '')
   const [goal, setGoal] = useState(initial.goal ?? '')
   const [selectedBg, setSelectedBg] = useState(initial.background ?? '')
-  const [suggestions, setSuggestions] = useState<AISuggestedBackground[]>([])
-  const [showAll, setShowAll] = useState(false)
-  const [aiLoading, setAiLoading] = useState(false)
-  const [aiError, setAiError] = useState('')
   const [isPending, startTransition] = useTransition()
 
-  const canSuggest = backstory.trim().length >= 20 && goal.trim().length >= 10
   const canProceed = selectedBg && backstory.trim() && goal.trim()
-
-  async function handleSuggest() {
-    setAiError('')
-    setAiLoading(true)
-    setSuggestions([])
-    try {
-      const res = await fetch('/api/suggest-backgrounds', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ backstory, goal }),
-      })
-      const data = await res.json()
-      if (data.error) throw new Error(data.error)
-      setSuggestions(data.suggestions)
-    } catch (err) {
-      setAiError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
-    } finally {
-      setAiLoading(false)
-    }
-  }
 
   function handleNext() {
     if (!canProceed) return
@@ -98,23 +67,17 @@ export function Step2({ characterId, initial, backgrounds }: Props) {
     )
   }
 
-  const suggestedBackgrounds = suggestions
-    .map(s => backgrounds.find(b => b.index === s.index))
-    .filter(Boolean) as Background[]
-
-  const displayedBackgrounds = showAll ? backgrounds : suggestedBackgrounds
-
   return (
     <div className="space-y-8">
       <div>
         <p className="text-amber-500 text-xs font-semibold uppercase tracking-widest mb-1">Step 2 of 6</p>
         <h2 className="text-2xl font-bold text-stone-100">Your Character's Story</h2>
         <p className="text-stone-400 text-sm mt-1">
-          Tell us about your character. The more detail you give, the better the AI suggestions!
+          Tell us about your character, then pick the background that fits their story.
         </p>
       </div>
 
-      {/* Backstory */}
+      {/* Backstory & Goal */}
       <div className="space-y-5">
         <div>
           <label className="block text-stone-300 font-medium mb-2" htmlFor="backstory">
@@ -146,64 +109,20 @@ export function Step2({ characterId, initial, backgrounds }: Props) {
             className="w-full bg-stone-900 border border-stone-600 rounded-xl px-4 py-3 text-stone-100 placeholder-stone-600 focus:outline-none focus:border-amber-500 transition-colors resize-none text-sm leading-relaxed"
           />
         </div>
-
-        {/* AI Suggest button */}
-        <button
-          type="button"
-          onClick={handleSuggest}
-          disabled={!canSuggest || aiLoading}
-          className="flex items-center gap-2 px-5 py-2.5 bg-stone-800 hover:bg-stone-700 disabled:opacity-40 disabled:cursor-not-allowed border border-stone-600 hover:border-amber-500/50 text-stone-200 rounded-lg text-sm transition-all"
-        >
-          {aiLoading ? (
-            <>
-              <span className="animate-spin">⟳</span> Thinking…
-            </>
-          ) : (
-            <>✨ Suggest backgrounds with AI</>
-          )}
-        </button>
-        {!canSuggest && !aiLoading && (
-          <p className="text-stone-600 text-xs">Write at least 20 characters in your backstory and 10 in your goal to enable AI suggestions.</p>
-        )}
-        {aiError && (
-          <p className="text-red-400 text-sm bg-red-900/20 border border-red-800 rounded-lg px-4 py-2">{aiError}</p>
-        )}
       </div>
 
       {/* Background picker */}
       <div>
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-stone-200 font-semibold">
-            {suggestions.length > 0 ? 'AI Suggestions' : 'All Backgrounds'}
-          </h3>
-          <button
-            type="button"
-            onClick={() => setShowAll(v => !v)}
-            className="text-amber-400 hover:text-amber-300 text-sm underline underline-offset-2"
-          >
-            {showAll ? 'Show suggestions only' : 'Browse all backgrounds'}
-          </button>
-        </div>
-
-        {suggestions.length === 0 && !showAll && (
-          <div className="text-center py-10 border border-dashed border-stone-700 rounded-xl text-stone-500 text-sm">
-            Use the AI button above to get personalised suggestions, or browse all backgrounds.
-          </div>
-        )}
-
-        <div className="grid grid-cols-1 gap-3">
-          {displayedBackgrounds.map(bg => {
-            const suggestion = suggestions.find(s => s.index === bg.index)
-            return (
-              <BackgroundCard
-                key={bg.index}
-                background={bg}
-                isSelected={selectedBg === bg.index}
-                aiReason={suggestion?.reason}
-                onSelect={() => setSelectedBg(bg.index)}
-              />
-            )
-          })}
+        <h3 className="text-stone-200 font-semibold mb-4">Choose a Background</h3>
+        <div className="grid grid-cols-2 gap-3">
+          {backgrounds.map(bg => (
+            <BackgroundCard
+              key={bg.index}
+              background={bg}
+              isSelected={selectedBg === bg.index}
+              onSelect={() => setSelectedBg(bg.index)}
+            />
+          ))}
         </div>
       </div>
 

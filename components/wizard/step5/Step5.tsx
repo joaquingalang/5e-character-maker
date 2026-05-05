@@ -144,28 +144,28 @@ export function Step5({ characterId, initial, classEquipment }: Props) {
                       </span>
                       {selected && !opt.weaponCategory && <span className="ml-auto text-amber-400 text-base shrink-0">✓</span>}
                     </div>
-                    {selected && opt.weaponCategory && (
-                      <div className="mt-3 ml-9">
-                        <p className="text-stone-500 text-xs mb-2">Choose a specific weapon:</p>
-                        <div className="flex flex-wrap gap-2">
-                          {getWeaponsForCategory(opt.weaponCategory).map(w => (
-                            <button
-                              key={w.index}
-                              type="button"
-                              onClick={e => { e.stopPropagation(); setWeaponSelections(prev => ({ ...prev, [gi]: w.index })) }}
-                              className={`px-3 py-1.5 rounded-lg border text-xs transition-all ${
-                                weaponSelections[gi] === w.index
-                                  ? 'border-amber-500 bg-amber-500/10 text-amber-400'
-                                  : 'border-stone-600 text-stone-400 hover:border-stone-400'
-                              }`}
-                            >
-                              {w.name}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
                   </button>
+                  {selected && opt.weaponCategory && (
+                    <div className="mt-1 ml-9 px-3 py-3">
+                      <p className="text-stone-500 text-xs mb-2">Choose a specific weapon:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {getWeaponsForCategory(opt.weaponCategory).map(w => (
+                          <button
+                            key={w.index}
+                            type="button"
+                            onClick={() => setWeaponSelections(prev => ({ ...prev, [gi]: w.index }))}
+                            className={`px-3 py-1.5 rounded-lg border text-xs transition-all ${
+                              weaponSelections[gi] === w.index
+                                ? 'border-amber-500 bg-amber-500/10 text-amber-400'
+                                : 'border-stone-600 text-stone-400 hover:border-stone-400'
+                            }`}
+                          >
+                            {w.name}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )
             })}
